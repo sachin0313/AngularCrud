@@ -1,0 +1,145 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>
+                {{title}}!
+            </h1>
+        </div>
+        <div class="col-md-4">
+            <div class="alert alert-success alert-dismissable" *ngIf="msg">
+                <a href="#" class="close" (click)="clickMe()">&times;</a> {{msg}}
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+    <div class="clearfix">
+        <a routerLink="/contactlist" class="dash-item">View Contacts List</a>
+    </div>
+    <hr>
+    <form name="form" (ngSubmit)="(f.form.valid && saveData())" #f="ngForm" novalidate>
+        <div class="form-group clearfix">
+
+            <div class="col-md-12">
+
+                <div class="col-md-6">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label for="firstName">First Name:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="model.firstName" placeholder="Enter First Name" #firstName="ngModel" required>
+                            <span class="help-block text-danger pull-left" *ngIf="f.submitted && !firstName.valid"> First name is required</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="lastName">Last Name:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="model.lastName" placeholder="Enter Last Name" #lastName="ngModel" required>
+                            <span class="help-block text-danger pull-left" *ngIf="f.submitted && !lastName.valid"> Last name is required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group clearfix">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="email">Email:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="model.email" placeholder="Enter Email" #email="ngModel" required email>
+
+                            <div [hidden]="email.valid || email.untouched">
+                                <span class="help-block text-danger pull-left" *ngIf="f.submitted && !email.valid"> Email is required</span>
+                                <span class="help-block text-danger pull-left" *ngIf="email.errors?.email"> Invalid Email</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="phone">Phone:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="phone" class="form-control" id="phone" maxlength="10" minlength="5" name="phone" [(ngModel)]="model.phone" placeholder="Enter Phone" #phone="ngModel" required pattern="[0-9]{10}">
+                            <div [hidden]="phone.valid || phone.untouched">
+                                <span class="help-block text-danger pull-left" *ngIf="f.submitted && !phone.valid">Phone no. is required</span>
+                                <span class="help-block text-danger pull-left" *ngIf="phone.errors?.pattern">Valid Phone Number</span>
+                                <!-- <span class="help-block text-danger pull-left" *ngIf="phone.errors?.minlength">Atlest 5 digits</span>
+                                <span class="help-block text-danger pull-left" *ngIf="phone.errors?.maxlength">Max 10 digits</span> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="countryId">Select Country:</label>
+                        </div>
+                        <div class="col-md-8">
+
+                            <select name="countryId" [(ngModel)]="model.countryId" (change)="onSelect($event.target.value)" class="w-100-per form-control" #countryId="ngModel" required>
+            <option value="">--Select Country--</option>
+            <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+        </select>
+                            <span class="help-block text-danger pull-left" *ngIf="f.submitted && !countryId.valid"> Country is required</span>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="stateId">Select State:</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select name="stateId" [(ngModel)]="model.stateId" class="w-100-per form-control" #stateId="ngModel" required>
+            <option value="">--Select State--</option>
+            <option *ngFor="let state of states" value={{state.id}}>{{state.name}}</option>
+        </select>
+                            <span class="help-block text-danger pull-left" *ngIf="f.submitted && !stateId.valid"> State is required</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="clearfix"> </div>
+        <div class="col-md-12 m-t-15">
+            <div class="row">
+                <div class="col-md-12">
+                    <div *ngIf="model.contactId>0">
+                        <button type="submit" id="update" class="btn btn-primary" [disabled]="f.form.invalid">Update</button>
+                    </div>
+                    <div *ngIf="!model.contactId">
+                        <button type="submit" id="submit" class="btn btn-primary" [disabled]="f.form.invalid">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+</div>

@@ -1,0 +1,52 @@
+<p>
+    cascade-dropdown works!
+</p>
+<div class="container">
+    <hr>
+    <form>
+
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label for="countryId">Select Country:</label>
+                    </div>
+                    <div class="col-md-8">
+
+                        <select name="countryId" [(ngModel)]="model.countryId" (change)="onSelect($event.target.value)" class="w-100-per form-control" #countryId="ngModel" required>
+            <option value="">--Select Country--</option>
+            <option *ngFor="let country of countries" value={{country.id}}>{{country.name}}</option>
+        </select>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <label for="stateId">Select State:</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select name="stateId" [(ngModel)]="model.stateId" class="w-100-per form-control" #stateId="ngModel" required>
+            <option value="">--Select State--</option>
+            <option *ngFor="let state of states" value={{state.id}}>{{state.name}}</option>
+        </select>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+
+
+
+
+</div>

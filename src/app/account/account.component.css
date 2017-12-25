@@ -1,0 +1,59 @@
+.btn {
+    width: 70px;
+    margin-left: 16px;
+}
+
+.container {
+    /* border: 5px grey solid;
+    margin-bottom: 10px;
+    margin-top: 7px; */
+    margin: 0px auto;
+}
+
+.alert {
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.w-100-per {
+    width: 100%
+}
+
+.m-tb-20 {
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+
+/* .clearfix{ margin-bottom: 5px} */
+
+.m-t-15 {
+    margin-top: 15px
+}
+
+.m-r-10 {
+    margin-right: 10px;
+}
+
+a:hover {
+    color: #23527c;
+    /* text-decoration: underline; */
+}
+
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    color: red;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid #a94442;
+    /* red */
+}
